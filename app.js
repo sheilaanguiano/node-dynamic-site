@@ -9,10 +9,8 @@ const hostname = '127.0.0.1';
 const port = 8080;
 
 const nodeServer = http.createServer((request, response) => {
-  response.statusCode = 200;
-  response.setHeader('Content-Type', 'text/plain');
-  response.write("This is begore the end\n");
-  response.end('Hello World\n');
+    homeRoute(request, response);
+  
 });
 
 nodeServer.listen(port, hostname, () => {
@@ -20,10 +18,20 @@ nodeServer.listen(port, hostname, () => {
 });
 
 //2. Handle HTTO route GET / and POST  i.e. Home
+function homeRoute(request, response){
     //if the url == "/" && GET
+    if(request.url === "/") {
         //show search
+        response.statusCode = 200;
+        response.setHeader('Content-Type', 'text/plain');
+        response.write("header\n");
+        response.write("search\n");
+        response.end("footer\n");
+    }
+
     //if url == "/" && POST 
         //redirect to /:username
+}
 
 //3. Handle HTTP route GET /:username i.e. /sheilaanguiano
     //if url =="/.."
