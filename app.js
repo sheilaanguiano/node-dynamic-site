@@ -3,6 +3,21 @@
 //Solution: Use node.js to perform the profile look ups and serve our template via HTTP
 
 //1. Create a web server
+const http = require('http');
+
+const hostname = '127.0.0.1';
+const port = 8080;
+
+const nodeServer = http.createServer((request, response) => {
+  response.statusCode = 200;
+  response.setHeader('Content-Type', 'text/plain');
+  response.write("This is begore the end\n");
+  response.end('Hello World\n');
+});
+
+nodeServer.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
 
 //2. Handle HTTO route GET / and POST  i.e. Home
     //if the url == "/" && GET
