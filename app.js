@@ -9,6 +9,7 @@ const port = 8080;
 
 const server = http.createServer((request, response) => {
     home(request, response);
+    user(request, response);
 });
 
 server.listen(port, hostname, () => {
@@ -29,16 +30,25 @@ function home(request, response) {
 
     //if url == "/" && POST 
         //redirect to /:username
-    
 }
 
 //3. Handle HTTP route GET /:username i.e. /sheilaanguiano
+function user(request, response) {
     //if url =="/.."
+    let username = request.url.replace("/", "");
+    if(username.length > 0) {
+        response.statusCode = 200;
+        response.setHeader('Content-Type', 'text/plain');
+        response.write("header\n");
+        response.write(username + "\n");
+        response.end("footer\n");
+    }
         //get json from Treehouse
     //on "end"
         //show profile
     //on "error"
         //show error
+}
 
 //4.Function that handles the reading of iles and merge in value
     //read from file and get a string
