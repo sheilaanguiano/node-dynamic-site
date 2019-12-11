@@ -18,12 +18,14 @@ server.listen(port, hostname, () => {
 //2. Handle HTTP route GET / and POST  i.e. Home
 function home(request, response) {
     //if the url == "/" && GET
+    if(request.url === "/"){
         //show search
         response.statusCode = 200;
         response.setHeader('Content-Type', 'text/plain');
         response.write("header\n");
         response.write("search\n")
         response.end("footer\n");
+    }
 
     //if url == "/" && POST 
         //redirect to /:username
