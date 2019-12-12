@@ -1,4 +1,5 @@
 const Profile = require("./profile.js")
+const renderer = require("./renderer.js")
 
 //-----------------------------------
 //  HOME ROUTE
@@ -10,7 +11,7 @@ function home(request, response) {
         //show search
         response.statusCode = 200;
         response.setHeader('Content-Type', 'text/plain');
-        response.write("header\n");
+        renderer.view("header", {}, response);
         response.write("search\n")
         response.end("footer\n");
     }

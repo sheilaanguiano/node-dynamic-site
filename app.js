@@ -19,6 +19,4 @@ server.listen(port, hostname, () => {
 });
 
 
-//Function that handles the reading of iles and merge in value
-    //read from file and get a string
-        //merge values in to string
+
