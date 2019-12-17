@@ -1,5 +1,6 @@
-const Profile = require("./profile.js")
-const renderer = require("./renderer.js")
+const Profile = require("./profile.js");
+const renderer = require("./renderer.js");
+const queryString = require("querystring");
 
 const commonHeaders = {'Content-Type': 'text/html'};
 
@@ -10,16 +11,30 @@ const commonHeaders = {'Content-Type': 'text/html'};
 function home(request, response) {
     //if the url == "/" && GET
     if(request.url === "/"){
+        if(request.method.toLowerCase() === "get"){
         //show search
         response.writeHead(200, commonHeaders);
         renderer.view("header", {}, response);
         renderer.view("search", {}, response);
         renderer.view("footer", {}, response);
         response.end();
+        } else {
+            //if url == "/" && POST
+            //get the post data from body
+            request.on("data", function(postBody){
+               //extract the username
+                let query = queryString.parse(postBody.toString());
+                response.write(query.username);
+                response.end();
+                //redirect to /:username
+            });
+            
+        
+
+        }
     }
 
-    //if url == "/" && POST 
-        //redirect to /:username
+    
 }
 
 //-----------------------------------
